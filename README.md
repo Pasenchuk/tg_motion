@@ -2,6 +2,7 @@
 
 Как установить:
 
+```bash
 export TELEGRAM_API_TOKEN="token"
 export TELEGRAM_BOT_ID="@bot name"
 export TELEGRAM_CHANNEL_ID='@channel name'
@@ -12,3 +13,4 @@ sudo apt-get install git
 git clone https://github.com/Pasenchuk/tg_motion.git
 cd tg_motion/
 sudo -E ./install_camera.sh 
+```
