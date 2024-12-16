@@ -82,6 +82,7 @@ sudo cp supervisor/motion.conf /etc/supervisor/conf.d/motion.conf
 echo environment=HOME=\"$home_dir\",TELEGRAM_API_TOKEN=\"$TELEGRAM_API_TOKEN\",TELEGRAM_BOT_ID=\"$TELEGRAM_BOT_ID\",TELEGRAM_CHANNEL_ID=\"$TELEGRAM_CHANNEL_ID\" >> /etc/supervisor/conf.d/motion.conf
 
 sudo cp motion/motion.conf /etc/motion/motion.conf
+sudo mkdir /etc/motion/cameras
 sudo cp tg_message.py $home_dir/tg_message.py
 sudo chown tg_motion $home_dir/tg_message.py
 
