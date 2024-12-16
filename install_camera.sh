@@ -40,7 +40,6 @@ if [ -z ${OPTIONAL_VAR+x} ]; then
   echo "Предупреждение: Переменная CAMERA_PORT не задана. Будет использовано значение 8080."
 fi
 
-
 # Создаём пользователя tg_motion, если он ещё не существует
 if ! id "tg_motion" &>/dev/null; then
   echo "Создаём пользователя tg_motion..."
@@ -84,6 +83,7 @@ echo environment=HOME=\"$home_dir\",TELEGRAM_API_TOKEN=\"$TELEGRAM_API_TOKEN\",T
 
 sudo cp motion/motion.conf /etc/motion/motion.conf
 sudo cp tg_message.py $home_dir/tg_message.py
+sudo chown tg_motion $home_dir/tg_message.py
 
 cd $home_dir
 python3 -m venv venv_tg
