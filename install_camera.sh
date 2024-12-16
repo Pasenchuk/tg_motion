@@ -85,9 +85,9 @@ echo environment=HOME=\"$home_dir\",TELEGRAM_API_TOKEN=\"$TELEGRAM_API_TOKEN\",T
 sudo cp motion/motion.conf /etc/motion/motion.conf
 sudo mkdir /etc/motion/cameras
 sudo cp tg_message.py $home_dir/tg_message.py
-sed -i "s|bot_token = os.getenv(\"TELEGRAM_API_TOKEN\", \"\");|bot_token = os.getenv(\"TELEGRAM_API_TOKEN\", \"$TELEGRAM_API_TOKEN\");|" "$home_dir/tg_message.py"
-sed -i "s|bot_user_name = os.getenv(\"TELEGRAM_BOT_ID\", \"\");|bot_user_name = os.getenv(\"TELEGRAM_BOT_ID\", \"$TELEGRAM_BOT_ID\");|" "$home_dir/tg_message.py"
-sed -i "s|chat_id = os.getenv(\"TELEGRAM_CHANNEL_ID\", \"\");|chat_id = os.getenv(\"TELEGRAM_CHANNEL_ID\", \"$TELEGRAM_CHANNEL_ID\");|" "$home_dir/tg_message.py"
+sed -i "s|bot_token = '';|bot_token = \"$TELEGRAM_API_TOKEN\";|" "$home_dir/tg_message.py"
+sed -i "s|bot_user_name = '';|bot_user_name = \"$TELEGRAM_BOT_ID\";|" "$home_dir/tg_message.py"
+sed -i "s|chat_id = '';|chat_id = \"$TELEGRAM_CHANNEL_ID\";|" "$home_dir/tg_message.py"
 
 sudo chown tg_motion $home_dir/tg_message.py
 
