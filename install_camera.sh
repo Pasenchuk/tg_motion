@@ -84,10 +84,11 @@ echo environment=HOME=\"$home_dir\",TELEGRAM_API_TOKEN=\"$TELEGRAM_API_TOKEN\",T
 
 sudo cp motion/motion.conf /etc/motion/motion.conf
 sudo mkdir /etc/motion/cameras
-sudo cp tg_message.py $home_dir/tg_message.py
-sed -i "s|bot_token = '';|bot_token = \"$TELEGRAM_API_TOKEN\";|" "$home_dir/tg_message.py"
-sed -i "s|bot_user_name = '';|bot_user_name = \"$TELEGRAM_BOT_ID\";|" "$home_dir/tg_message.py"
-sed -i "s|chat_id = '';|chat_id = \"$TELEGRAM_CHANNEL_ID\";|" "$home_dir/tg_message.py"
+py_sender=$home_dir/tg_message.py
+sudo cp tg_message.py $py_sender
+sudo sed -i "s|bot_token = '';|bot_token = \"$TELEGRAM_API_TOKEN\";|" "$py_sender"
+sudo sed -i "s|bot_user_name = '';|bot_user_name = \"$TELEGRAM_BOT_ID\";|" "$py_sender"
+sudo sed -i "s|chat_id = '';|chat_id = \"$TELEGRAM_CHANNEL_ID\";|" "$py_sender"
 
 sudo chown tg_motion $home_dir/tg_message.py
 
@@ -100,6 +101,6 @@ venv_tg/bin/pip3 install python-telegram-bot==13.15
 sudo supervisorctl reread
 sudo supervisorctl update
 sudo supervisorctl start
-
+py
 
 v4l2-ctl --list-devices
