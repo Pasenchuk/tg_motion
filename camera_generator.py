@@ -43,7 +43,7 @@ def create_camera_files(video_devices, base_port):
         )
 
         # Путь к файлу
-        file_path = os.path.join(camera_dir, f"{camera_name}")
+        file_path = os.path.join(camera_dir, f"{camera_name}.conf")
 
         # Записываем содержимое в файл
         try:

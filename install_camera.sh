@@ -62,6 +62,7 @@ else
   echo "Домашняя директория пользователя tg_motion не найдена."
   exit 1
 fi
+sudo usermod -aG video tg_motion
 
 sudo apt-get install -y python3-pip
 sudo apt-get install -y python3-venv
@@ -84,7 +85,13 @@ echo environment=HOME=\"$home_dir\",TELEGRAM_API_TOKEN=\"$TELEGRAM_API_TOKEN\",T
 sudo cp motion/motion.conf /etc/motion/motion.conf
 sudo mkdir /etc/motion/cameras
 sudo cp tg_message.py $home_dir/tg_message.py
+sed -i "s|bot_token = os.getenv(\"TELEGRAM_API_TOKEN\", \"\");|bot_token = os.getenv(\"TELEGRAM_API_TOKEN\", \"$TELEGRAM_API_TOKEN\");|" "$home_dir/tg_message.py"
+sed -i "s|bot_user_name = os.getenv(\"TELEGRAM_BOT_ID\", \"\");|bot_user_name = os.getenv(\"TELEGRAM_BOT_ID\", \"$TELEGRAM_BOT_ID\");|" "$home_dir/tg_message.py"
+sed -i "s|chat_id = os.getenv(\"TELEGRAM_CHANNEL_ID\", \"\");|chat_id = os.getenv(\"TELEGRAM_CHANNEL_ID\", \"$TELEGRAM_CHANNEL_ID\");|" "$home_dir/tg_message.py"
+
 sudo chown tg_motion $home_dir/tg_message.py
+
+sudo python3 camera_generator.py $CAMERA_PORT
 
 cd $home_dir
 python3 -m venv venv_tg
