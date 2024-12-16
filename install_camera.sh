@@ -28,7 +28,7 @@ print_help() {
 
 # Проверяем наличие всех обязательных переменных
 for var in "${REQUIRED_VARS[@]}"; do
-  if [[ -z "${!var}" ]]; then
+  if [ -z ${var+x} ]; then
     echo "Ошибка: Переменная $var не задана."
     print_help
     exit 1
@@ -36,7 +36,7 @@ for var in "${REQUIRED_VARS[@]}"; do
 done
 
 # Проверяем необязательную переменную и выводим сообщение, если она не задана
-if [[ -z "${!OPTIONAL_VAR}" ]]; then
+if [ -z ${OPTIONAL_VAR+x} ]; then
   echo "Предупреждение: Переменная CAMERA_PORT не задана. Будет использовано значение 8080."
 fi
 
