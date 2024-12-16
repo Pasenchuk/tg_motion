@@ -85,7 +85,7 @@ echo environment=HOME=\"$home_dir\",TELEGRAM_API_TOKEN=\"$TELEGRAM_API_TOKEN\",T
 sudo cp motion/motion.conf /etc/motion/motion.conf
 sudo mkdir /etc/motion/cameras
 py_sender=$home_dir/tg_message.py
-sudo cp tg_message.py $py_sendersudo 
+sudo cp tg_message.py $py_sender
 sudo sed -i "s/bot_token = ''/bot_token = \"$TELEGRAM_API_TOKEN\"/g" "$py_sender"
 sudo sed -i "s/bot_user_name = ''/bot_user_name = \"$TELEGRAM_BOT_ID\"/g" "$py_sender"
 sudo sed -i "s/chat_id = ''/chat_id = \"$TELEGRAM_CHANNEL_ID\"/g" "$py_sender"
