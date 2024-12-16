@@ -2,9 +2,9 @@ from telegram import Bot
 import sys
 import os
 
-bot_token = ''
-bot_user_name = ''
-chat_id = ''
+bot_token = os.getenv("TELEGRAM_API_TOKEN", "")
+bot_user_name = os.getenv("TELEGRAM_BOT_ID", "")
+chat_id = os.getenv("TELEGRAM_CHANNEL_ID", "")
 
 lan_ip = os.popen("hostname -I").read().strip()
 wan_ip = os.popen("curl -s ipinfo.io/ip").read().strip()

@@ -39,7 +39,7 @@ def create_camera_files(video_devices, base_port):
             f"lightswitch_percent 10\n"
             f"lightswitch_frames 30\n"
             f"threshold 5000\n"
-            f"camera_name {camera_name}\n"
+            f"camera_name {camera_name}:{port}\n"
         )
 
         # Путь к файлу
